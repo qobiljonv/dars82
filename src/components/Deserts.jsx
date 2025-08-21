@@ -1,7 +1,6 @@
 import Card from "./Card";
 
 function Deserts({ deserts }) {
-  console.log(deserts);
   return (
     <div className="desserts__container">
       <h1 className="title">Desserts</h1>

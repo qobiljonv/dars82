@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   deserts: [],
   totalPrise: 0,
-  totalamount: 0,
+  totalAmount: 0,
 };
 
 const desertsSlice = createSlice({
@@ -11,10 +11,12 @@ const desertsSlice = createSlice({
   initialState,
   reducers: {
     addDesert: (state, { payload }) => {
+      state.deserts.push({ ...payload, amount: 1 });
       desertsSlice.caseReducers.calculateTotal(state);
     },
     removeDesert: (state, { payload }) => {
-      desertsSlice.caseReducers.calculateTotal;
+      state.deserts = state.deserts.filter((item) => item.id !== payload);
+      desertsSlice.caseReducers.calculateTotal(state);
     },
     incrementDeserts: (state, { payload }) => {
       const item = state.deserts.find((item) => item.id == payload);
@@ -28,7 +30,7 @@ const desertsSlice = createSlice({
     },
     clearDesert: (state, { payload }) => {
       state.deserts = [];
-      desertsSlice.caseReducers.calculateTotal;
+      desertsSlice.caseReducers.calculateTotal(state);
     },
     calculateTotal: (state) => {
       let price = 0;
@@ -38,10 +40,18 @@ const desertsSlice = createSlice({
         price += item.amount * item.price;
         amount += item.amount;
       });
+      state.totalAmount = amount;
+      state.totalPrise = price;
     },
   },
 });
 
-export const { addDesert, clearDesert, removeDesert } = desertsSlice.actions;
+export const {
+  addDesert,
+  clearDesert,
+  removeDesert,
+  desertsAmount,
+  incrementDeserts,
+} = desertsSlice.actions;
 
 export default desertsSlice.reducer;

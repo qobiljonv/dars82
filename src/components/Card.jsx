@@ -1,5 +1,16 @@
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addDesert,
+  desertsAmount,
+  incrementDeserts,
+  removeDesert,
+} from "../app/featurest/desertsSlise";
+
 function Card({ desert }) {
-  let isAdded = false;
+  const dispatch = useDispatch();
+  const { deserts } = useSelector((store) => store.deserts);
+
+  let isAdded = deserts.find((item) => item.id == desert.id);
   return (
     <div className="card">
       <picture>
@@ -21,8 +32,11 @@ function Card({ desert }) {
         <img className="card__image" src={`${desert.image.thumbnail}`} alt="" />
       </picture>
       <div className="card__btn">
-        {isAdded && (
-          <button className="card__add__to">
+        {!isAdded && (
+          <button
+            onClick={() => dispatch(addDesert(desert))}
+            className="card__add__to"
+          >
             <img
               src="../images/icon-add-to-cart.svg"
               alt=""
@@ -32,9 +46,12 @@ function Card({ desert }) {
             <span>Add to Cart</span>
           </button>
         )}
-        {!isAdded && (
+        {isAdded && (
           <div className="card__btns__amount">
-            <button className="card__btn__amount">
+            <button
+              onClick={() => dispatch(incrementDeserts(isAdded.id))}
+              className="card__btn__amount"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="10"
@@ -48,8 +65,17 @@ function Card({ desert }) {
                 />
               </svg>
             </button>
-            <span>5</span>
-            <button className="card__btn__amount">
+            <span>{isAdded.amount}</span>
+            <button
+              onClick={() => {
+                if (isAdded.amount == 1) {
+                  dispatch(removeDesert(isAdded.id));
+                } else {
+                  dispatch(desertsAmount(isAdded.id));
+                }
+              }}
+              className="card__btn__amount"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="10"
@@ -66,7 +92,7 @@ function Card({ desert }) {
       <div className="card__body">
         <p className="card__category">{desert.category}</p>
         <p className="card__name">{desert.name}</p>
-        <p className="card__price">{desert.price}$</p>
+        <p className="card__price">${desert.price}</p>
       </div>
     </div>
   );
