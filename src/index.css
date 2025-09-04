@@ -350,6 +350,7 @@ body {
 .title__sapn {
   color: var(--color-rose-900);
   font-size: 2rem;
+  margin-left: 2rem;
 }
 
 .neutral__texts {
