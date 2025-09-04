@@ -50,7 +50,6 @@ function YourCard() {
               </li>
             ))}
           </ul>
-
           <div className="your__card-total">
             <p className="your__card__total-text">Order Total</p>
             <h3 className="your__card__total-price">
@@ -70,6 +69,7 @@ function YourCard() {
             </p>
           </div>
           <button className="order__btn">Confirm Order</button>
+          Yaratuvchi: Qobiljon Vallamatov
         </div>
       )}
     </div>

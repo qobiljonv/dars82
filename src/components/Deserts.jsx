@@ -3,7 +3,9 @@ import Card from "./Card";
 function Deserts({ deserts }) {
   return (
     <div className="desserts__container">
-      <h1 className="title">Desserts</h1>
+      <h1 className="title">
+        Desserts <span className="title__sapn">Yaratuvchi: Qobiljon</span>
+      </h1>
       <div className="desert__container">
         <div className="deserts">
           {deserts.map((desert) => {

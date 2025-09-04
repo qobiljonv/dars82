@@ -347,6 +347,11 @@ body {
   margin-bottom: 2.4rem;
 }
 
+.title__sapn {
+  color: var(--color-rose-900);
+  font-size: 2rem;
+}
+
 .neutral__texts {
 }
 .neutral__image {
