@@ -69,7 +69,6 @@ function YourCard() {
             </p>
           </div>
           <button className="order__btn">Confirm Order</button>
-          Yaratuvchi: Qobiljon Vallamatov
         </div>
       )}
     </div>
